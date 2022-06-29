@@ -42,6 +42,9 @@ class Project
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Comment::class, orphanRemoval: true)]
     private $comments;
 
+    #[ORM\ManyToMany(targetEntity: Technology::class, inversedBy: 'projects')]
+    private $technologies;
+
     public function __construct()
     {
         $this->userProjects = new ArrayCollection();
@@ -49,6 +52,7 @@ class Project
         $this->usersWhoLiked = new ArrayCollection();
         $this->links = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->technologies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -244,6 +248,30 @@ class Project
                 $comment->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Technology>
+     */
+    public function getTechnologies(): Collection
+    {
+        return $this->technologies;
+    }
+
+    public function addTechnology(Technology $technology): self
+    {
+        if (!$this->technologies->contains($technology)) {
+            $this->technologies[] = $technology;
+        }
+
+        return $this;
+    }
+
+    public function removeTechnology(Technology $technology): self
+    {
+        $this->technologies->removeElement($technology);
 
         return $this;
     }
