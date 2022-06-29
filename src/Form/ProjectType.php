@@ -30,8 +30,12 @@ class ProjectType extends AbstractType
                 'expanded' => true,
             ])
             ->add('userProjects', CollectionType::class, [
-                'entry_type' => UserProjectGranted::class,
-                'label' => 'Collaborators',
+                'entry_type' => UserProjectType::class,
+                'label' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'delete_empty' => true,
+                'prototype' => true,
             ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image',
