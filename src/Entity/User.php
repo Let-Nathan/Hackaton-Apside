@@ -57,7 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $comments;
 
     #[ORM\ManyToMany(targetEntity: technology::class, inversedBy: 'users')]
-    private $technologies;
+    private ArrayCollection $technologies;
 
     public function __construct()
     {
