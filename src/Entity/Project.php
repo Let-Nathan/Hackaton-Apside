@@ -6,8 +6,11 @@ use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[Vich\Uploadable]
 class Project
 {
     #[ORM\Id]
@@ -45,14 +48,53 @@ class Project
     #[ORM\ManyToMany(targetEntity: Technology::class, inversedBy: 'projects')]
     private $technologies;
 
+    #[ORM\Column(type: 'string')]
+    private $imageName;
+
+    #[Vich\UploadableField(mapping: 'project_image', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
         $this->userProjects = new ArrayCollection();
         $this->usersHaveFavourite = new ArrayCollection();
         $this->usersWhoLiked = new ArrayCollection();
         $this->links = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->technologies = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * @param mixed $imageName
+     */
+    public function setImageName($imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile
+     */
+    public function setImageFile(?File $imageFile): void
+    {
+        $this->imageFile = $imageFile;
     }
 
     public function getId(): ?int

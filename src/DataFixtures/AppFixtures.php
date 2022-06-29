@@ -6,6 +6,8 @@ use App\Entity\Technology;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -84,6 +86,13 @@ class AppFixtures extends Fixture
         "Trello"
     ];
 
+    private $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
         foreach (self::USER as $key => $value) {
@@ -91,7 +100,7 @@ class AppFixtures extends Fixture
             $user->setFirstName($value[0]);
             $user->setLastName($value[1]);
             $user->setEmail($value[2]);
-            $user->setPassword($value[3]);
+            $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
             $user->setBio($value[4]);
             $user->setAgency($value[5]);
             $manager->persist($user);

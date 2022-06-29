@@ -56,8 +56,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Comment::class, orphanRemoval: true)]
     private $comments;
 
-    #[ORM\ManyToMany(targetEntity: technology::class, inversedBy: 'users')]
-    private ArrayCollection $technologies;
+    #[ORM\ManyToMany(targetEntity: Technology::class, inversedBy: 'users')]
+    private Collection $technologies;
 
     public function __construct()
     {
