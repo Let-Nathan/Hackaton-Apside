@@ -103,6 +103,7 @@ class AppFixtures extends Fixture
             $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
             $user->setBio($value[4]);
             $user->setAgency($value[5]);
+            $user->setImageUrl($value[6]);
             $manager->persist($user);
         }
 

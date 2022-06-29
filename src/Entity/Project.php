@@ -30,7 +30,7 @@ class Project
     #[ORM\Column(type: 'boolean')]
     private $isFinished;
 
-    #[ORM\OneToMany(mappedBy: 'project', targetEntity: UserProjectGranted::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: UserProjectGranted::class, orphanRemoval: true, cascade: ['all'])]
     private $userProjects;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favouriteProjects')]
@@ -56,6 +56,7 @@ class Project
 
     public function __construct()
     {
+        $this->isFinished = false;
         $this->createdAt = new \DateTime();
         $this->userProjects = new ArrayCollection();
         $this->usersHaveFavourite = new ArrayCollection();
