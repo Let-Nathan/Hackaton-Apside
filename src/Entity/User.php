@@ -33,6 +33,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $lastName;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $agency;
+
     #[ORM\Column(type: 'text')]
     private $bio;
 
@@ -53,12 +56,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Comment::class, orphanRemoval: true)]
     private $comments;
 
+    #[ORM\ManyToMany(targetEntity: technology::class, inversedBy: 'users')]
+    private $technologies;
+
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
         $this->userProjects = new ArrayCollection();
         $this->favouriteProjects = new ArrayCollection();
         $this->likedProjects = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->technologies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -285,5 +293,45 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, technology>
+     */
+    public function getTechnologies(): Collection
+    {
+        return $this->technologies;
+    }
+
+    public function addTechnology(technology $technology): self
+    {
+        if (!$this->technologies->contains($technology)) {
+            $this->technologies[] = $technology;
+        }
+
+        return $this;
+    }
+
+    public function removeTechnology(technology $technology): self
+    {
+        $this->technologies->removeElement($technology);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAgency()
+    {
+        return $this->agency;
+    }
+
+    /**
+     * @param mixed $agency
+     */
+    public function setAgency($agency): void
+    {
+        $this->agency = $agency;
     }
 }
