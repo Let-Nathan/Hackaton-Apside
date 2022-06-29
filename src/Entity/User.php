@@ -59,6 +59,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Technology::class, inversedBy: 'users')]
     private Collection $technologies;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $imageUrl;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -333,5 +336,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAgency($agency): void
     {
         $this->agency = $agency;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(string $imageUrl): self
+    {
+        $this->imageUrl = $imageUrl;
+
+        return $this;
     }
 }

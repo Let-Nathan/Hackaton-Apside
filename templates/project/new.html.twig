@@ -1,7 +1,67 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                {{ form_start(form) }}
+                <div class="container d-flex flex-column gap-5">
+                    <div>
+                        {{ form_label(form.title) }}
+                        {{ form_widget(form.title, {'attr':
+                            {'class': 'd-flex flex-column w-100 p-2'}}) }}
+                    </div>
+                    <div>
+                        {{ form_label(form.imageFile) }}
+                        {{ form_widget(form.imageFile, {'attr':
+                            {'class': ''}}) }}
+                    </div>
+                    <div>
+                        {{ form_label(form.description) }}
+                        {{ form_widget(form.description, {'attr':
+                            {'class': 'd-flex flex-column w-100'}}) }}
+                    </div>
+                    <div>
+                        {{ form_label(form.technologies) }}
+                        {{ form_widget(form.technologies, {'attr':
+                            {'class': 'd-flex gap-2'}}) }}
+                    </div>
+                    <div>
+                        {{ form_widget(form.submit, {'attr':
+                            {'class': 'btn btn-primary'}}) }}
+                    </div>
+                </div>
 
-    {{ form_end(form) }}
+                <div>
+                    {{ form_widget(form.userProjects, {'attr':
+                        {'class': 'bg-danger'}}) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+            <div class="col-4 d-flex flex-column gap-2">
+                <ul id='user-list' class="list-unstyled d-flex flex-column gap-1">
+                    <h5>Add a collaborator</h5>
+                    {% for user in users %}
+                        <li class="btn btn-outline-secondary" data-user-id="{{ user.id }}">
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="{{ user.imageUrl }}" style="max-height: 4rem">
+                                <div class="d-flex flex-column align-items-start">
+                                    <p class="m-0">{{ user.firstName ~ ' ' ~ user.lastName }}</p>
+                                    <p class="m-0">{{ user.agency }}</p>
+                                    <div class="d-flex gap-2">
+                                        <p class="m-0 bg-warning px-2 rounded">php</p>
+                                        <p class="m-0 bg-warning px-2 rounded">JavaScript</p>
+{#                                        {% for skill in user.technologies %}#}
+{#                                            <p>{{ skill.name }}</p>#}
+{#                                        {% endfor %}#}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
