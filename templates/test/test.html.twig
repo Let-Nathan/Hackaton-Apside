@@ -1,20 +1,18 @@
-<html lang="en"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.98.0">
-    <title>Heroes · Bootstrap v5.2</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<body>
+{#
+Reste à faire : Remplir le sujet en modifiant l'entité Project, ou alors ne pas le mettre !
+Voir comment on ajoute des liens au formulaire pour pouvoir les afficher
+Voir comment on peut ajouter des commentaires
+Finir de commenter la vue, afin qu'elle soit lisible de tous !
+#}
 
+{% extends 'base.html.twig' %}
 
+{% block body %}
+
+{# Partie 1 : haute avec titre + 4 icones #}
 <div class="container px-4 py-5" id="icon-grid">
     <h2 class="pb-2 border-bottom">
-        Titre du projet
+        {{ project.title }}
     </h2>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
@@ -41,7 +39,11 @@
                     </h4>
                 </div>
                 <p>
-                    En cours / Projet / Terminé
+                    {% if project.isFinished %}
+                        Terminé
+                    {% else %}
+                        En cours
+                    {% endif %}
                 </p>
             </div>
         </div>
@@ -55,7 +57,7 @@
                     </h4>
                 </div>
                 <p>
-                    Il y a x personnes qui participent
+                    Il y a {{ project.userProjects|length }} personnes qui participent
                 </p>
             </div>
         </div>
@@ -69,29 +71,38 @@
                     </h4>
                 </div>
                 <ul>
-                    <li> Java script </li>
-                    <li> Php/symphony </li>
+                    {% for technology in project.technologies %}
+                        <li>
+                            {{ technology.name }}
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
 
     </div>
 </div>
+{# Fin de la partie 1 #}
 
-<div class="container">
+    {# Partie 2 : encadré avec toutes les informations #}
+    <div class="container">
+
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
             <h2 class="fw-bold lh-1 my-5">Description du projet</h2>
-            <p class="lead my-5">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s
-                most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+            <p class="lead my-5"> {{ project.description }}</p>
         </div>
         <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-            <img class="rounded-lg-3" src="https://cdn.pixabay.com/photo/2022/05/28/06/39/cat-7226671_960_720.jpg" alt="" width="720">
+            <img class="rounded-lg-3" src="/assets/images/project/{{ project.imageName }}" alt="" width="720">
         </div>
 
         <div class=" p-3 p-lg-5 pt-lg-3 mt-5">
             <h2 class="fw-bold lh-1 my-5">Liens utiles</h2>
             <div class="list-group w-auto my-5">
+
+                {% for link in project.links %}
+                {{ dump(link) }}
+                {% endfor %}
 
                 <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                     <i class="bi bi-github fs-3"></i>
@@ -144,17 +155,19 @@
             <h2 class="fw-bold lh-1 my-5">Collaborateurs</h2>
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {% for collaborator in project.userProjects %}
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="{{ collaborator.collaborator.imageUrl }}" alt="">
 
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img src="https://cdn.pixabay.com/photo/2015/07/31/15/01/man-869215_960_720.jpg" alt="">
-
-                            <div class="card-body">
-                                <h6> Michel boby</h6>
-                                <p class="card-text">Bio du gonze</p>
+                                <div class="card-body">
+                                    <h6> {{ collaborator.collaborator.firstName}} {{ collaborator.collaborator.lastName}}</h6>
+                                    <p class="card-text">{{ collaborator.collaborator.bio}}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
+
 
                     <div class="col">
                         <div class="card shadow-sm">
@@ -265,10 +278,4 @@
         </div>
 
     </div>
-
-
-
-
-
-
-</body></html>
+{% endblock %}
