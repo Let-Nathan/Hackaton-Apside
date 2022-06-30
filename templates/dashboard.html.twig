@@ -1,55 +1,74 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container-fluid">
-           <div class="row">
-               <div class="borderleft row col-2 d-flex flex-column bg-white">
-                   <div class="menu d-flex flex-column mt-4">
-                    <button class="text-white bi bi-house btn btn-primary mb-2" type="button" data-container="body"> Return home
-                    </button>
-                    <button class="text-white bi bi-box-arrow-up btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Most upvoted</button>
-                    <button class="text-white bi bi-star btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Favorite</button>
-                    <button class="text-white bi bi-person btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Profile</button>
-                    <button  class="text-white bi bi-door-open btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Log out</button>
-                   </div>
-               </div>
-               <div class="row col-10 d-flex justify-content-between bg-white">
-                    {% include('components/_searchbarProject.html.twig') %}
-                   {% for project in project %}
-                       <div class="card mt-4 rounded rounded-5 bg-primary shadow-lg p-3 " style="width: 18rem;">
-                           <div class="d-flex justify-content-center">
-                               <img class="card-img-top rounded" src="/assets/images/project/{{ project.imageName }}" alt="{{ project.imageName }}" style="max-height: 15rem; max-width: 15rem; min-height: 10rem; min-width: 10rem;">
-                           </div>
-                           <div class="d-flex justify-content-center flex-row-reverse mt-4 mx-3">
-                               <h1 class="text-white fs-5 fw-bold ">{{ project.title }}</h1>
-                           </div>
-                           <div class="card-body">
-                               <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                               <div class="d-flex justify-content-around mt-2">
-                                   {% if app.user.favouriteProjects.contains(project) %}
-                                       <i class="bi-lg bi-star-fill text-white fs-5" style="font-size: 2rem;"></i>
+<div class="container-fluid">
+    <div class="row">
 
-                                   {% else %}
-                                       <a href="{{ path('add_favourite', {'id': project.id }) }}">
-                                           <i class="bi-lg bi-star text-white fs-5" style="font-size: 2rem;"></i>
-                                       </a>
-                                   {% endif %}
-                                    <div class="d-flex justify-content-center align-items-center gap-3">
-                                        <p class="text-white m-0"> {{ project.usersWhoLiked.count() }} </p>
-                                        {% if app.user.likedProjects.contains(project) %}
-                                            <i class="bi-lg bi-heart-fill text-white fs-5" style="font-size: 2rem;"></i>
-                                        {% else %}
-                                            <a href="{{ path('add_like', {'id': project.id }) }}">
-                                                <i class="bi bi-heart text-white fs-5" style="font-size: 2rem;"></i>
-                                            </a>
-                                        {% endif %}
-                                    </div>
+        <div class="borderleft row col-2 d-flex flex-column bg-white">
+            <div class="d-flex flex-column gap-2 align-items-center">
+                <h1 class="fs-2">{{ app.user.firstName ~ ' ' ~ app.user.lastName }}</h1>
+                <img src="{{ app.user.imageUrl }}" class="rounded rounded-circle" style="width: 5rem; height: 5rem">
+                <div class="d-flex gap-2 flex-wrap">
+                    {% for skill in app.user.technologies %}
+                        <a href="#" class="p-1 m-0 text-white rounded btn btn-secondary">{{ skill.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
 
-                               </div>
+            <div class="menu d-flex flex-column mt-4 d-flex flex-column gap-2">
+                <a href="#" class="btn btn-primary d-flex gap-2 justify-content-center align-items-center">
+                    <i class="bi bi-heart fs-5"></i>
+                    <p class="m-0">Most upvoted</p>
+                </a>
+                <a href="{{ path('app_favourites') }}" class="btn btn-primary d-flex gap-2 justify-content-center align-items-center">
+                    <i class="bi bi-star fs-5"></i>
+                    <p class="m-0">My favourites</p>
+                </a>
+                <a href="#" class="btn btn-primary d-flex gap-2 justify-content-center align-items-center">
+                    <i class="bi bi-arrow-clockwise fs-5"></i>
+                    <p class="m-0">Reset filter</p>
+                </a>
+            </div>
+        </div>
+        <div class="row col-10 d-flex justify-content-center gap-5 bg-white">
+            <div class="col-12 d-flex justify-content-center">
+                {% include('components/_searchbarProject.html.twig') %}
+            </div>
+            {% for project in project %}
+                <div class="card rounded rounded-5 bg-primary shadow-lg p-3 " style="width: 18rem;">
+                    <div class="d-flex justify-content-center">
+                        <img class="card-img-top rounded" src="/assets/images/project/{{ project.imageName }}" alt="{{ project.imageName }}" style="max-height: 15rem; max-width: 15rem; min-height: 10rem; min-width: 10rem;">
+                    </div>
+                    <div class="d-flex justify-content-center flex-row-reverse mt-4 mx-3">
+                        <h1 class="text-white fs-5 fw-bold ">{{ project.title }}</h1>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="d-flex justify-content-around mt-2">
+                            {% if app.user.favouriteProjects.contains(project) %}
+                                <i class="bi-lg bi-star-fill text-white fs-5" style="font-size: 2rem;"></i>
 
-                           </div>
-                       </div>
-                   {% endfor %}
-               </div>
+                            {% else %}
+                                <a href="{{ path('add_favourite', {'id': project.id }) }}">
+                                    <i class="bi-lg bi-star text-white fs-5" style="font-size: 2rem;"></i>
+                                </a>
+                            {% endif %}
+                            <div class="d-flex justify-content-center align-items-center gap-3">
+                                <p class="text-white m-0"> {{ project.usersWhoLiked.count() }} </p>
+                                {% if app.user.likedProjects.contains(project) %}
+                                    <i class="bi-lg bi-heart-fill text-white fs-5" style="font-size: 2rem;"></i>
+                                {% else %}
+                                    <a href="{{ path('add_like', {'id': project.id }) }}">
+                                        <i class="bi bi-heart text-white fs-5" style="font-size: 2rem;"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
 
-           </div>
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
     {% endblock %}

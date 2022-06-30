@@ -1,6 +1,18 @@
 {% block navbar %}
     <nav class="navbar navbar-light border-bottom bg-primary px-5 shadow">
-        <img src="{{ asset('assets/images/logo/logo_white.png') }}" class="img-fluid" style="max-height: 3rem">
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="{{ path('dashboard') }}">
+            <img src="{{ asset('assets/images/logo/logo_white.png') }}" class="img-fluid" style="max-height: 3rem">
+        </a>
+        <ul class="d-flex justify-content-center gap-3 list-unstyled m-0">
+            <li>
+                <a class="text-white text-decoration-none" href="#">HOME</a>
+            </li>
+            <li>
+                <a class="text-white text-decoration-none" href="#">PROFILE</a>
+            </li>
+            <li>
+                <a class="text-white text-decoration-none" href="{{ path('app_logout') }}">LOGOUT</a>
+            </li>
+        </ul>
     </nav>
 {% endblock %}

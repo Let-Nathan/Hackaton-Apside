@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class dashboardController extends AbstractController
+class DashboardController extends AbstractController
 {
     #[Route('/', name: 'dashboard')]
     public function view(ProjectRepository $projectRepository, Request $request): Response
@@ -20,9 +20,7 @@ class dashboardController extends AbstractController
         $searchForm->handleRequest($request);
 
         if( $searchForm->isSubmitted() && $searchForm->isValid() ) {
-
             $search = $searchForm->get('title')->getData();
-//            $program = $projectRepository->findBy(['title' => $search]);
             $program = $projectRepository->findTitleTag($search);
             if(empty($program)) {
                 $this->addFlash('primary', 'No project fund');
@@ -35,9 +33,31 @@ class dashboardController extends AbstractController
 
         return $this->render('dashboard.html.twig', [
             'project' => $projectRepository->findAll(),
-//            'project' => $projectRepository->findBy(['id' =>  ]),
             'form' => $searchForm->createView()
+        ]);
+    }
 
+    #[Route('/favourites', name: 'app_favourites')]
+    public function favourites(ProjectRepository $projectRepository, Request $request): Response
+    {
+        $searchForm = $this->createForm(SearchProjectType::class);
+        $searchForm->handleRequest($request);
+
+        if( $searchForm->isSubmitted() && $searchForm->isValid() ) {
+            $search = $searchForm->get('title')->getData();
+            $program = $projectRepository->findTitleTag($search);
+            if(empty($program)) {
+                $this->addFlash('primary', 'No project fund');
+                return $this->redirectToRoute('dashboard');
+            }
+            return $this->render('dashboard.html.twig', [
+                'project' => $program,
+                'form' => $searchForm->createView()]);
+        }
+
+        return $this->render('dashboard.html.twig', [
+            'project' => $this->getUser()->getFavouriteProjects(),
+            'form' => $searchForm->createView()
         ]);
     }
 }
