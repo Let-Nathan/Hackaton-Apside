@@ -1,3 +1,6 @@
+<div class="col-6">
 {{ form_start(form) }}
-{{ form_widget(form.title) }}
+    {{ form_widget(form.title, {'attr':
+        {'class': 'p-3', 'placeHolder': 'search a project'}}) }}
 {{ form_end(form) }}
+</div>

@@ -45,17 +45,22 @@ class ProjectRepository extends ServiceEntityRepository
         $result = [];
 
         $projects = $this->findAll();
+
         foreach ($projects as $project) {
+
             $count = 0;
 
             foreach ($arrWords as $word) {
-                if (strlen($word) > 4 && $this->getEntityManager()->getConnection()->fetchAllAssociative("SELECT * FROM project WHERE description LIKE '%" . $word . "%'")) {
+
+                if (strlen($word) > 4 && substr_count($project->getDescription(), $word) > 0) {
                     $count++;
                 }
             }
             if ($count >= 3) {
                 $result[] = $project;
             }
+
+
         }
 
         return $result;

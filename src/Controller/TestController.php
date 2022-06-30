@@ -56,4 +56,31 @@ class TestController extends AbstractController
         $userRepository->add($user, true);
         return $this->redirectToRoute('dashboard');
     }
+
+    #[Route('/remove/favourite/{id}', name: 'remove_favourite')]
+    public function removeFavourite(Project $project, UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+        $user->removeFavouriteProject($project);
+        $userRepository->add($user, true);
+        return $this->redirectToRoute('dashboard');
+    }
+
+    #[Route('/add/like/{id}', name: 'add_like')]
+    public function addLike(Project $project, UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+        $user->addLikedProject($project);
+        $userRepository->add($user, true);
+        return $this->redirectToRoute('dashboard');
+    }
+
+    #[Route('/remove/like/{id}', name: 'remove_like')]
+    public function removeLike(Project $project, UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+        $user->removeLikedProject($project);
+        $userRepository->add($user, true);
+        return $this->redirectToRoute('dashboard');
+    }
 }
