@@ -7,22 +7,23 @@
                 {{ form_start(form) }}
                 <div class="container d-flex flex-column gap-5">
                     <div>
-                        {{ form_label(form.title) }}
+                        <h2>Title</h2>
                         {{ form_widget(form.title, {'attr':
                             {'class': 'd-flex flex-column w-100 p-2'}}) }}
                     </div>
                     <div>
-                        {{ form_label(form.imageFile) }}
+                        <h2>Image</h2>
                         {{ form_widget(form.imageFile, {'attr':
                             {'class': ''}}) }}
                     </div>
                     <div>
-                        {{ form_label(form.description) }}
+                        <h2>Description</h2>
+                        <p class="text-gray">Insert a well explained description on the project you would like to start; an IA will analyze your text in order to find similar on going or terminated projects.</p>
                         {{ form_widget(form.description, {'attr':
                             {'class': 'd-flex flex-column w-100'}}) }}
                     </div>
                     <div>
-                        {{ form_label(form.technologies) }}
+                        <h2>Technologies</h2>
                         {{ form_widget(form.technologies, {'attr':
                             {'class': 'd-flex gap-2'}}) }}
                     </div>
@@ -67,7 +68,7 @@
                 <div id="collaborators-selected" class="d-flex gap-2 flex-wrap mt-2">
                 </div>
                 <ul id='user-list' class="list-unstyled d-flex flex-column gap-1">
-                    <p>no collaborators selected</p>
+                    <li class="text-gray">no collaborators selected yet</li>
                 </ul>
             </div>
         </div>

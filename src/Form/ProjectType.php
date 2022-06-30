@@ -29,6 +29,7 @@ class ProjectType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+                'choice_attr' => ['class' => 'CIAO'],
             ])
             ->add('userProjects', CollectionType::class, [
                 'entry_type' => UserProjectType::class,

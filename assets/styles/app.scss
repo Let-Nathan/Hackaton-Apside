@@ -5,8 +5,16 @@
 
 html *
 {
-  font-size: 1em !important;
+  font-size: 1em;
   font-family: Montserrat !important;
+}
+#user-list li {
+  transition: all 0.4s;
+}
+
+#user-list li:hover {
+  border: 1px solid $secondary;
+  transform: scale(1.1);
 }
 
 #project_description {

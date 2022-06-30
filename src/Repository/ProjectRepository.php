@@ -39,6 +39,18 @@ class ProjectRepository extends ServiceEntityRepository
         }
     }
 
+    public function findSimilar($search): array
+    {
+//        return $this->createQueryBuilder('p')
+//            ->where()
+//        return $this->createQueryBuilder('u')
+//            ->where('u.firstName LIKE :value OR u.lastName LIKE :value OR u.email LIKE :value OR u.agency LIKE :value')
+//            ->setParameter('value', '%'. $value .'%')
+//            ->orderBy('u.lastName', 'ASC')
+//            ->getQuery()
+//            ->getResult();
+    }
+
 //    /**
 //     * @return Project[] Returns an array of Project objects
 //     */
