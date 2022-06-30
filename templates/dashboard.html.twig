@@ -22,25 +22,30 @@
                                <h1 class="text-white fs-5 fw-bold ">{{ project.title }}</h1>
                            </div>
                            <div class="card-body">
-
                                <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                               <img class="card-img-top rounded" src="https://www.blackfire.io/static/8f30bb474fd6b05700c9fa5b4943a5de/0bbe1/php-no-footprint.png" alt="">
-
                                <div class="d-flex justify-content-around mt-2">
-
-                                   <a href="{{ path('add_favourite', {'id': 4}) }}">
-
-                                       <i class="bi-lg bi-star text-white fs-5" style="font-size: 2rem;"></i>
+                                   {% if app.user.favouriteProjects.contains(project) %}
                                        <i class="bi-lg bi-star-fill text-white fs-5" style="font-size: 2rem;"></i>
-                                   </a>
 
-                                   <i class="bi bi-box-arrow-up text-white fs-5" style="font-size: 2rem;"></i>
+                                   {% else %}
+                                       <a href="{{ path('add_favourite', {'id': project.id }) }}">
+                                           <i class="bi-lg bi-star text-white fs-5" style="font-size: 2rem;"></i>
+                                       </a>
+                                   {% endif %}
+                                    <div class="d-flex justify-content-center align-items-center gap-3">
+                                        <p class="text-white m-0"> {{ project.usersWhoLiked.count() }} </p>
+                                        {% if app.user.likedProjects.contains(project) %}
+                                            <i class="bi-lg bi-heart-fill text-white fs-5" style="font-size: 2rem;"></i>
+                                        {% else %}
+                                            <a href="{{ path('add_like', {'id': project.id }) }}">
+                                                <i class="bi bi-heart text-white fs-5" style="font-size: 2rem;"></i>
+                                            </a>
+                                        {% endif %}
+                                    </div>
                                </div>
                            </div>
                        </div>
                    {% endfor %}
                </div>
            </div>
-
     {% endblock %}

@@ -56,4 +56,13 @@ class TestController extends AbstractController
         $userRepository->add($user, true);
         return $this->redirectToRoute('dashboard');
     }
+
+    #[Route('/add/like/{id}', name: 'add_like')]
+    public function addLike(Project $project, UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+        $user->addLikedProject($project);
+        $userRepository->add($user, true);
+        return $this->redirectToRoute('dashboard');
+    }
 }
