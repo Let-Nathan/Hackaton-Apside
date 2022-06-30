@@ -17,3 +17,4 @@ const $ = require('jquery');
 require('bootstrap');
 
 import './js/add-collection-widget';
+import './js/check-similar-project-widget';

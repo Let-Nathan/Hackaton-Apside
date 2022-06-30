@@ -39,10 +39,28 @@ class ProjectRepository extends ServiceEntityRepository
         }
     }
 
-    public function findSimilar($search): array
+    public function findSimilar($search)
     {
-//        return $this->createQueryBuilder('p')
-//            ->where()
+        $arrWords = explode(' ', $search);
+        $result = [];
+
+        $projects = $this->findAll();
+        foreach ($projects as $project) {
+           $count = 0;
+
+            foreach ($arrWords as $word) {
+                if (strlen($word) > 4 && $this->getEntityManager()->getConnection()->fetchAllAssociative("SELECT * FROM project WHERE description LIKE '%" . $word . "%'")) {
+                    $count++;
+                }
+            }
+            if ($count >= 3) {
+                $result[] = $project;
+            }
+        }
+
+//        $result = $this->getEntityManager()->getConnection()->fetchAllAssociative("SELECT * FROM project WHERE description REGEXP '(?=.*parola1)(?=.*parola2)(?=.*parola3)'");
+
+        return $result;
 //        return $this->createQueryBuilder('u')
 //            ->where('u.firstName LIKE :value OR u.lastName LIKE :value OR u.email LIKE :value OR u.agency LIKE :value')
 //            ->setParameter('value', '%'. $value .'%')
