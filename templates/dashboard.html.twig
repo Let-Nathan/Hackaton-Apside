@@ -45,16 +45,17 @@
                 {% include('components/_searchbarProject.html.twig') %}
             </div>
             {% for project in project %}
-                <a href="{{ path('project_show', {'id' : project.id} ) }}">
                     <div class="card rounded rounded-5 bg-primary shadow-lg p-3 " style="width: 18rem;">
+                <a href="{{ path('project_show', {'id' : project.id} ) }}">
                         <div class="d-flex justify-content-center">
                             <img class="card-img-top rounded" src="/assets/images/project/{{ project.imageName }}" alt="{{ project.imageName }}" style="max-height: 15rem; max-width: 15rem; min-height: 10rem; min-width: 10rem;">
                         </div>
+                </a>
                         <div class="d-flex justify-content-center flex-row-reverse mt-4 mx-3">
                             <h1 class="text-white fs-5 fw-bold ">{{ project.title }}</h1>
                         </div>
                         <div class="card-body d-flex flex-column gap-4">
-                            <p class="card-text text-white">{{ project.description|slice(0,150) }}</p>
+                            <p class="card-text text-white">{{ project.description|slice(0,100) }}</p>
                             <div class="d-flex justify-content-around mt-2">
                                 {% if app.user.favouriteProjects.contains(project) %}
                                 <a href="{{ path('remove_favourite', {'id': project.id }) }}">
@@ -88,8 +89,8 @@
                             </ul>
                         </div>
                     </div>
-                <a>
             {% endfor %}
+
         </div>
 
     </div>

@@ -52,13 +52,18 @@ class AppFixtures extends Fixture
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3OFHzDozs8IOtg7LyK5o-jSjsRU64AcBFHQ&usqp=CAU"
         ],
         "user5" => [
-            "Giuessepe",
-            "PetraroelleI",
-            "kingoftheking@gmail.com",
+            "Giuseppe",
+            "Petraroli",
+            "g.petraroli@gmail.com",
             "azerty",
-            "ceci est une bio à modifier",
+            "I’m an enthusiastic web developer student of the Wild Code School in Bordeaux, France.
+I’ve always been extremely passionate about web development and computer science which is why I’ve decided to became a web developer.
+
+I believe in continuous growth and improvement, both in personal and professional life. This approach has always encouraged me to be proactive and work on innovative projects with teams of different people, always bringing enthusiasm and positive energy.
+
+In my free time I am also a very good amateur photographer, dog trainer and of course an excellent cook😉.",
             "Rome",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3OFHzDozs8IOtg7LyK5o-jSjsRU64AcBFHQ&usqp=CAU"
+            "https://media-exp1.licdn.com/dms/image/C5603AQH0gA5Dvu7O2g/profile-displayphoto-shrink_800_800/0/1650395403426?e=1661990400&v=beta&t=NCfkimd_t31Y5foySzqxp6SaV-6QC5JQydEmN1L5W54"
         ],
         "user6" => [
             "Estelle",
@@ -82,9 +87,9 @@ class AppFixtures extends Fixture
         'Angular'
     ];
     private const COMPAGNY = ['Paris', 'Bordeaux'];
-     private const AVATAR = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3OFHzDozs8IOtg7LyK5o-jSjsRU64AcBFHQ&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtD7Z16cPEInHpkV5kQoQxHw0pHD39YK8aZg&usqp=CAU',
+    private const AVATAR = [
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3OFHzDozs8IOtg7LyK5o-jSjsRU64AcBFHQ&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtD7Z16cPEInHpkV5kQoQxHw0pHD39YK8aZg&usqp=CAU',
     ];
 
 
@@ -108,21 +113,21 @@ class AppFixtures extends Fixture
             $manager->persist($technology);
 
         }
-        // On rajoute des User
-//        foreach (self::USER as $key => $value) {
+//         On rajoute des User
+
 //            $user = new User();
-//            $user->setFirstName($value[0]);
-//            $user->setLastName($value[1]);
-//            $user->setEmail($value[2]);
-//            $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
-//            $user->setBio($value[4]);
-//            $user->setAgency($value[5]);
+//            $user->setFirstName(self::USER[4][0]);
+//            $user->setLastName(self::USER[4][1]);
+//            $user->setEmail(self::USER[4][2]);
+//            $user->setPassword($this->hasher->hashPassword($user, 'qwerty'));
+//            $user->setBio(self::USER[4][4]);
+//            $user->setAgency(self::USER[4][5]);
 //            $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
-//            for ($i=0; $i< rand(2, 4); $i++){
-//                $user->addTechnology($this->getReference(self::TECHNO[array_rand(self::TECHNO)]));
-//            }
+//
+//            $user->addTechnology($this->getReference(self::TECHNO[0]));
+//            $user->addTechnology($this->getReference(self::TECHNO[1]));
+//
 //            $manager->persist($user);
-//        }
 
 
 
@@ -172,7 +177,7 @@ class AppFixtures extends Fixture
             $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
             $user->setBio($faker->sentence(10));
             $user->setAgency(self::COMPAGNY[array_rand(self::COMPAGNY)]);
-            $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
+            $user->setImageUrl('giuseppe.png');
 
             $user->addTechnology($this->getReference(self::TECHNO[2]));
             $user->addTechnology($this->getReference(self::TECHNO[4]));
