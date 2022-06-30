@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Link;
 use App\Entity\Project;
 use App\Entity\Technology;
 use App\Entity\User;
@@ -40,6 +41,10 @@ class ProjectType extends AbstractType
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image',
             ])
+            ->add('websiteLink', TextType::class)
+            ->add('gitHubLink', TextType::class)
+            ->add('slackLink', TextType::class)
+            ->add('trelloLink', TextType::class)
             ->add('submit', SubmitType::class)
         ;
     }
