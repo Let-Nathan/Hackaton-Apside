@@ -12,9 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class dashboardController extends AbstractController
 {
     #[Route('/', name: 'dashboard')]
-    public function view(ProjectRepository $projectRepository): Response
+    public function view(ProjectRepository $projectRepository, Request $request): Response
     {
-
         $searchForm = $this->createForm(SearchProjectType::class);
         $searchForm->handleRequest($request);
         if( $searchForm->isSubmitted() && $searchForm->isValid() ) {
