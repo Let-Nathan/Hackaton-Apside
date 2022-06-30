@@ -39,6 +39,16 @@ class ProjectRepository extends ServiceEntityRepository
         }
     }
 
+    public function findTitleTag($value): array
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.title LIKE :value')
+            ->setParameter('value', '%'. $value .'%')
+            ->orderBy('u.title', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Project[] Returns an array of Project objects
 //     */
