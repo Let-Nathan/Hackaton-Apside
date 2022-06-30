@@ -9,13 +9,13 @@
                 <img src="{{ app.user.imageUrl }}" class="rounded rounded-circle" style="width: 5rem; height: 5rem">
                 <div class="d-flex gap-2 flex-wrap">
                     {% for skill in app.user.technologies %}
-                        <a href="#" class="p-1 m-0 text-white rounded btn btn-secondary">{{ skill.name }}</a>
+                        <a href="{{ path('app_projects_techno', {'techno': skill.id}) }}" class="p-1 m-0 text-white rounded btn btn-secondary">{{ skill.name }}</a>
                     {% endfor %}
                 </div>
             </div>
 
             <div class="menu d-flex flex-column mt-4 d-flex flex-column gap-2">
-                <a href="#" class="btn btn-primary d-flex gap-2 justify-content-center align-items-center">
+                <a href="{{ path('app_mostliked') }}" class="btn btn-primary d-flex gap-2 justify-content-center align-items-center">
                     <i class="bi bi-heart fs-5"></i>
                     <p class="m-0">Most upvoted</p>
                 </a>
@@ -23,10 +23,15 @@
                     <i class="bi bi-star fs-5"></i>
                     <p class="m-0">My favourites</p>
                 </a>
-                <a href="#" class="btn btn-primary d-flex gap-2 justify-content-center align-items-center">
+                <a href="{{ path('dashboard') }}" class="btn btn-primary d-flex gap-2 justify-content-center align-items-center">
                     <i class="bi bi-arrow-clockwise fs-5"></i>
                     <p class="m-0">Reset filter</p>
                 </a>
+            </div>
+            <div class="d-flex gap-2 flex-wrap mt-5">
+                {% for skill in skills %}
+                    <a href="{{ path('app_projects_techno', {'techno': skill.id}) }}" class="p-1 m-0 text-white rounded btn btn-gray">{{ skill.name }}</a>
+                {% endfor %}
             </div>
         </div>
         <div class="row col-10 d-flex justify-content-center gap-5 bg-white">
@@ -45,7 +50,9 @@
                         <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <div class="d-flex justify-content-around mt-2">
                             {% if app.user.favouriteProjects.contains(project) %}
+                            <a href="{{ path('remove_favourite', {'id': project.id }) }}">
                                 <i class="bi-lg bi-star-fill text-white fs-5" style="font-size: 2rem;"></i>
+                            </a>
 
                             {% else %}
                                 <a href="{{ path('add_favourite', {'id': project.id }) }}">
@@ -55,7 +62,9 @@
                             <div class="d-flex justify-content-center align-items-center gap-3">
                                 <p class="text-white m-0"> {{ project.usersWhoLiked.count() }} </p>
                                 {% if app.user.likedProjects.contains(project) %}
+                                <a href="{{ path('remove_like', {'id': project.id }) }}">
                                     <i class="bi-lg bi-heart-fill text-white fs-5" style="font-size: 2rem;"></i>
+                                </a>
                                 {% else %}
                                     <a href="{{ path('add_like', {'id': project.id }) }}">
                                         <i class="bi bi-heart text-white fs-5" style="font-size: 2rem;"></i>
