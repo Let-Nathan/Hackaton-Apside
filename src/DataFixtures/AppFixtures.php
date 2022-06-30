@@ -124,7 +124,7 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        for($i = 0; $i < 100; $i++) {
+        for($i = 0; $i < 5; $i++) {
 
             $user = new User();
 
@@ -139,9 +139,8 @@ class AppFixtures extends Fixture
                 $user->addTechnology($this->getReference(self::TECHNO[array_rand(self::TECHNO)]));
             }
             $manager->persist($user);
-
         }
-
         $manager->flush();
+
     }
 }

@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class dashboardController extends AbstractController
 {
-    #[Route('/view')]
+    #[Route('/', name: 'dashboard')]
     public function view(ProjectRepository $projectRepository): Response
     {
         return $this->render('dashboard.html.twig', ['project' => $projectRepository]);
