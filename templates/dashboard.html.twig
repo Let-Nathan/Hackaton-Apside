@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    <div class="container-fluid">
            <div class="row">
                <div class="borderleft row col-2 d-flex flex-column bg-white">
                    <div class="menu d-flex flex-column mt-4">
@@ -28,25 +29,19 @@
                        <div class="card-body">
 
                            <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                               <img class="card-img-top rounded" src="https://www.blackfire.io/static/8f30bb474fd6b05700c9fa5b4943a5de/0bbe1/php-no-footprint.png" alt="">
-
+                           <img class="card-img-top rounded" src="https://www.blackfire.io/static/8f30bb474fd6b05700c9fa5b4943a5de/0bbe1/php-no-footprint.png" alt="">
                            <div class="d-flex justify-content-around mt-2">
-
                                <a href="{{ path('add_favourite', {'id': 4}) }}">
-
                                    <i class="bi-lg bi-star text-white fs-5" style="font-size: 2rem;"></i>
                                    <i class="bi-lg bi-star-fill text-white fs-5" style="font-size: 2rem;"></i>
                                </a>
-
                                <i class="bi bi-box-arrow-up text-white fs-5" style="font-size: 2rem;"></i>
                            </div>
                        </div>
                    </div>
                    {% endfor %}
                </div>
-           </div>
-       </div>
-    {{ dump(app.user.favouriteProjects.0) }}
 
+           </div>
+    </div>
     {% endblock %}
