@@ -12,6 +12,11 @@
                             {'class': 'd-flex flex-column w-100 p-2'}}) }}
                     </div>
                     <div>
+                        {{ form_label(form.subject) }}
+                        {{ form_widget(form.subject, {'attr':
+                            {'class': 'd-flex flex-column w-100 p-2'}}) }}
+                    </div>
+                    <div>
                         {{ form_label(form.imageFile) }}
                         {{ form_widget(form.imageFile, {'attr':
                             {'class': ''}}) }}

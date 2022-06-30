@@ -23,6 +23,7 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
+            ->add('subject', TextType::class)
             ->add('description', TextareaType::class)
             ->add('technologies', EntityType::class, [
                 'class' => Technology::class,

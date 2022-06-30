@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
@@ -26,6 +27,12 @@ class Comment
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private $project;
+
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
