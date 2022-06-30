@@ -21,6 +21,9 @@ class Project
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $subject;
+
     #[ORM\Column(type: 'text')]
     private $description;
 
@@ -138,7 +141,15 @@ class Project
 
         return $this;
     }
+    public function getSubject()
+    {
+        return $this->subject;
+    }
 
+    public function setSubject($subject): void
+    {
+        $this->subject = $subject;
+    }
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
