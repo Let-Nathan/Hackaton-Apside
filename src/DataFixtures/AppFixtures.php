@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Project;
 use App\Entity\Technology;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -79,12 +80,12 @@ class AppFixtures extends Fixture
         'React',
         'Angular'
     ];
-    private const LINKS = [
-        "Github",
-        "Slack",
-        "Facebook",
-        "Trello"
-    ];
+//    private const LINKS = [
+//        "Github",
+//        "Slack",
+//        "Facebook",
+//        "Trello"
+//    ];
 
     private $hasher;
 
@@ -95,6 +96,15 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        // On rajoute des technos
+        foreach(self::TECHNO as $value) {
+            $technology = new Technology();
+            $technology->setName($value);
+            $this->addReference($value, $technology);
+            $manager->persist($technology);
+
+        }
+        // On rajoute des User
         foreach (self::USER as $key => $value) {
             $user = new User();
             $user->setFirstName($value[0]);
@@ -104,14 +114,15 @@ class AppFixtures extends Fixture
             $user->setBio($value[4]);
             $user->setAgency($value[5]);
             $user->setImageUrl($value[6]);
+            for ($i=0; $i< rand(2, 4); $i++){
+                $user->addTechnology($this->getReference(self::TECHNO[array_rand(self::TECHNO)]));
+            }
             $manager->persist($user);
         }
 
-        foreach(self::TECHNO as $value) {
-            $technology = new Technology();
-            $technology->setName($value);
-            $manager->persist($technology);
-        }
+        $project = new Project();
+        $project->setTitle('Supervision applicative SNCF RÉSEAU');
+        $project->setDescription('Au sein de la DSI de SNCF Réseau, la Division COP est notamment responsable de la supervision opérationnelle applicative, de l’exploitation du SI, ainsi que de l’administration des plateformes techniques. La définition et la mise en place d’une supervision spécifique à chaque application (plus de 250, dont 1/3 de critiques) est devenue une mission majeure de la Division COP. Depuis 2013, Apside accompagne ses clients sur les sujets de la supervision applicative et de maintien en conditions opérationnelles des infrastructures.');
 
         $manager->flush();
 
