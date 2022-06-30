@@ -28,6 +28,8 @@ class ProjectController extends AbstractController
             }
 
             $projectRepository->add($project, true);
+
+            return $this->redirectToRoute('project_show', ['id' => $project->getId()]);
         }
 
         return $this->renderForm('project/new.html.twig', [

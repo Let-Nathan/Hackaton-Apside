@@ -31,7 +31,12 @@ html *
 
 #project_technologies input {
   transform: scale(2);
-  margin-right: 10px;
+}
+
+.form-check {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 #project_technologies label {
