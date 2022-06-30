@@ -109,22 +109,24 @@ class AppFixtures extends Fixture
 
         }
         // On rajoute des User
-        foreach (self::USER as $key => $value) {
-            $user = new User();
-            $user->setFirstName($value[0]);
-            $user->setLastName($value[1]);
-            $user->setEmail($value[2]);
-            $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
-            $user->setBio($value[4]);
-            $user->setAgency($value[5]);
-            $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
-            for ($i=0; $i< rand(2, 4); $i++){
-                $user->addTechnology($this->getReference(self::TECHNO[array_rand(self::TECHNO)]));
-            }
-            $manager->persist($user);
-        }
+//        foreach (self::USER as $key => $value) {
+//            $user = new User();
+//            $user->setFirstName($value[0]);
+//            $user->setLastName($value[1]);
+//            $user->setEmail($value[2]);
+//            $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
+//            $user->setBio($value[4]);
+//            $user->setAgency($value[5]);
+//            $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
+//            for ($i=0; $i< rand(2, 4); $i++){
+//                $user->addTechnology($this->getReference(self::TECHNO[array_rand(self::TECHNO)]));
+//            }
+//            $manager->persist($user);
+//        }
 
-        for($i = 0; $i < 5; $i++) {
+
+
+        for($i = 0; $i < 10; $i++) {
 
             $user = new User();
 
@@ -135,9 +137,62 @@ class AppFixtures extends Fixture
             $user->setBio($faker->sentence(10));
             $user->setAgency(self::COMPAGNY[array_rand(self::COMPAGNY)]);
             $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
-            for ($i=0; $i < rand(2, 4); $i++){
-                $user->addTechnology($this->getReference(self::TECHNO[array_rand(self::TECHNO)]));
-            }
+
+
+            $user->addTechnology($this->getReference(self::TECHNO[0]));
+            $user->addTechnology($this->getReference(self::TECHNO[1]));
+            $manager->persist($user);
+        }
+
+        for($i = 0; $i < 20; $i++) {
+
+            $user = new User();
+
+            $user->setFirstName($faker->firstName());
+            $user->setLastName($faker->lastName());
+            $user->setEmail($faker->email());
+            $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
+            $user->setBio($faker->sentence(10));
+            $user->setAgency(self::COMPAGNY[array_rand(self::COMPAGNY)]);
+            $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
+
+            $user->addTechnology($this->getReference(self::TECHNO[1]));
+            $user->addTechnology($this->getReference(self::TECHNO[2]));
+            $user->addTechnology($this->getReference(self::TECHNO[3]));
+            $manager->persist($user);
+        }
+
+        for($i = 0; $i < 20; $i++) {
+
+            $user = new User();
+
+            $user->setFirstName($faker->firstName());
+            $user->setLastName($faker->lastName());
+            $user->setEmail($faker->email());
+            $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
+            $user->setBio($faker->sentence(10));
+            $user->setAgency(self::COMPAGNY[array_rand(self::COMPAGNY)]);
+            $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
+
+            $user->addTechnology($this->getReference(self::TECHNO[2]));
+            $user->addTechnology($this->getReference(self::TECHNO[4]));
+            $manager->persist($user);
+        }
+
+        for($i = 0; $i < 20; $i++) {
+
+            $user = new User();
+
+            $user->setFirstName($faker->firstName());
+            $user->setLastName($faker->lastName());
+            $user->setEmail($faker->email());
+            $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
+            $user->setBio($faker->sentence(10));
+            $user->setAgency(self::COMPAGNY[array_rand(self::COMPAGNY)]);
+            $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
+
+            $user->addTechnology($this->getReference(self::TECHNO[6]));
+            $user->addTechnology($this->getReference(self::TECHNO[7]));
             $manager->persist($user);
         }
         $manager->flush();

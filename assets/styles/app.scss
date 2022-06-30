@@ -5,8 +5,24 @@
 
 html *
 {
-  font-size: 1em !important;
+  font-size: 1em;
   font-family: Montserrat !important;
+}
+
+#user-list {
+  height: 700px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 1rem;
+}
+
+#user-list li {
+  transition: all 0.4s;
+}
+
+#user-list li:hover {
+  border: 1px solid $secondary;
+  transform: scale(1.05);
 }
 
 #project_description {
@@ -20,4 +36,22 @@ html *
 
 #project_technologies label {
   margin-right: 2rem;
+}
+
+#ai-icon {
+  color: $secondary;
+}
+
+.ai-icon-anim {
+  animation: anim_color 1s infinite;
+}
+
+@keyframes anim_color {
+  from {
+    color: red;
+  }
+
+  to {
+    color: $primary-dark;
+  }
 }
