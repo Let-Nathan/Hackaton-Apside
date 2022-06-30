@@ -117,17 +117,10 @@ class AppFixtures extends Fixture
             for ($i=0; $i< rand(2, 4); $i++){
                 $user->addTechnology($this->getReference(self::TECHNO[array_rand(self::TECHNO)]));
             }
+            $this->addReference($value[0], $user);
             $manager->persist($user);
         }
 
-        $project = new Project();
-        $project->setTitle('Supervision applicative SNCF RÉSEAU');
-
-        $project->setDescription('Au sein de la DSI de SNCF Réseau, la Division COP est notamment responsable de la supervision opérationnelle applicative, de l’exploitation du SI, ainsi que de l’administration des plateformes techniques. La définition et la mise en place d’une supervision spécifique à chaque application (plus de 250, dont 1/3 de critiques) est devenue une mission majeure de la Division COP. Depuis 2013, Apside accompagne ses clients sur les sujets de la supervision applicative et de maintien en conditions opérationnelles des infrastructures.');
-        $project->setIsFinished(true);
-
         $manager->flush();
-
-
     }
 }
