@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\SearchProjectType;
 use App\Repository\ProjectRepository;
+use App\Repository\TechnologyRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +18,7 @@ class dashboardController extends AbstractController
     {
         $searchForm = $this->createForm(SearchProjectType::class);
         $searchForm->handleRequest($request);
+
         if( $searchForm->isSubmitted() && $searchForm->isValid() ) {
 
             $search = $searchForm->get('title')->getData();
@@ -32,10 +35,9 @@ class dashboardController extends AbstractController
 
         return $this->render('dashboard.html.twig', [
             'project' => $projectRepository->findAll(),
+//            'project' => $projectRepository->findBy(['id' =>  ]),
             'form' => $searchForm->createView()
 
         ]);
     }
-
-
 }

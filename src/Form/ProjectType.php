@@ -43,10 +43,18 @@ class ProjectType extends AbstractType
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image',
             ])
-            ->add('websiteLink', TextType::class)
-            ->add('gitHubLink', TextType::class)
-            ->add('slackLink', TextType::class)
-            ->add('trelloLink', TextType::class)
+            ->add('websiteLink', TextType::class, [
+                'required' => false,
+            ])
+            ->add('gitHubLink', TextType::class, [
+                'required' => false,
+            ])
+            ->add('slackLink', TextType::class, [
+                'required' => false,
+            ])
+            ->add('trelloLink', TextType::class, [
+                'required' => false,
+            ])
             ->add('submit', SubmitType::class)
         ;
     }
