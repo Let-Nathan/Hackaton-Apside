@@ -8,7 +8,9 @@
                     <button class="text-white bi bi-box-arrow-up btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Most upvoted</button>
                     <button class="text-white bi bi-star btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Favorite</button>
                     <button class="text-white bi bi-person btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Profile</button>
-                    <button  class="text-white bi bi-door-open btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Log out</button>
+                       <a href="{{ path('app_logout') }}" class="text-decoration-none">
+                            <button class="text-white bi bi-door-open btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Log out</button>
+                       </a>
                    </div>
                </div>
                <div class="row col-10 d-flex justify-content-between bg-white">
@@ -38,5 +40,4 @@
                    {% endfor %}
                </div>
            </div>
-
     {% endblock %}
