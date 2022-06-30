@@ -8,3 +8,16 @@ html *
   font-size: 1em !important;
   font-family: Montserrat !important;
 }
+
+#project_description {
+  min-height: 400px;
+}
+
+#project_technologies input {
+  transform: scale(2);
+  margin-right: 10px;
+}
+
+#project_technologies label {
+  margin-right: 2rem;
+}

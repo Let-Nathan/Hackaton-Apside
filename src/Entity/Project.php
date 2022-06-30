@@ -54,6 +54,18 @@ class Project
     #[Vich\UploadableField(mapping: 'project_image', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $gitHubLink;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $slackLink;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $trelloLink;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $websiteLink;
+
     public function __construct()
     {
         $this->isFinished = false;
@@ -315,6 +327,54 @@ class Project
     public function removeTechnology(Technology $technology): self
     {
         $this->technologies->removeElement($technology);
+
+        return $this;
+    }
+
+    public function getGitHubLink(): ?string
+    {
+        return $this->gitHubLink;
+    }
+
+    public function setGitHubLink(?string $gitHubLink): self
+    {
+        $this->gitHubLink = $gitHubLink;
+
+        return $this;
+    }
+
+    public function getSlackLink(): ?string
+    {
+        return $this->slackLink;
+    }
+
+    public function setSlackLink(?string $slackLink): self
+    {
+        $this->slackLink = $slackLink;
+
+        return $this;
+    }
+
+    public function getTrelloLink(): ?string
+    {
+        return $this->trelloLink;
+    }
+
+    public function setTrelloLink(?string $trelloLink): self
+    {
+        $this->trelloLink = $trelloLink;
+
+        return $this;
+    }
+
+    public function getWebsiteLink(): ?string
+    {
+        return $this->websiteLink;
+    }
+
+    public function setWebsiteLink(?string $websiteLink): self
+    {
+        $this->websiteLink = $websiteLink;
 
         return $this;
     }
