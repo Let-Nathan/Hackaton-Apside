@@ -46,7 +46,7 @@ class ProjectRepository extends ServiceEntityRepository
 
         $projects = $this->findAll();
         foreach ($projects as $project) {
-           $count = 0;
+            $count = 0;
 
             foreach ($arrWords as $word) {
                 if (strlen($word) > 4 && $this->getEntityManager()->getConnection()->fetchAllAssociative("SELECT * FROM project WHERE description LIKE '%" . $word . "%'")) {
@@ -58,15 +58,17 @@ class ProjectRepository extends ServiceEntityRepository
             }
         }
 
-//        $result = $this->getEntityManager()->getConnection()->fetchAllAssociative("SELECT * FROM project WHERE description REGEXP '(?=.*parola1)(?=.*parola2)(?=.*parola3)'");
-
         return $result;
-//        return $this->createQueryBuilder('u')
-//            ->where('u.firstName LIKE :value OR u.lastName LIKE :value OR u.email LIKE :value OR u.agency LIKE :value')
-//            ->setParameter('value', '%'. $value .'%')
-//            ->orderBy('u.lastName', 'ASC')
-//            ->getQuery()
-//            ->getResult();
+    }
+
+    public function findTitleTag($value): array
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.title LIKE :value')
+            ->setParameter('value', '%'. $value .'%')
+            ->orderBy('u.title', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

@@ -109,22 +109,23 @@ class AppFixtures extends Fixture
 
         }
         // On rajoute des User
-        foreach (self::USER as $key => $value) {
-            $user = new User();
-            $user->setFirstName($value[0]);
-            $user->setLastName($value[1]);
-            $user->setEmail($value[2]);
-            $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
-            $user->setBio($value[4]);
-            $user->setAgency($value[5]);
-            $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
-            for ($i=0; $i< rand(2, 4); $i++){
-                $user->addTechnology($this->getReference(self::TECHNO[array_rand(self::TECHNO)]));
-            }
-            $manager->persist($user);
-        }
+//        foreach (self::USER as $key => $value) {
+//            $user = new User();
+//            $user->setFirstName($value[0]);
+//            $user->setLastName($value[1]);
+//            $user->setEmail($value[2]);
+//            $user->setPassword($this->hasher->hashPassword($user, 'azerty'));
+//            $user->setBio($value[4]);
+//            $user->setAgency($value[5]);
+//            $user->setImageUrl(self::AVATAR[array_rand(self::AVATAR)]);
+//            for ($i=0; $i< rand(2, 4); $i++){
+//                $user->addTechnology($this->getReference(self::TECHNO[array_rand(self::TECHNO)]));
+//            }
+//            $manager->persist($user);
+//        }
 
-        for($i = 0; $i < 20; $i++) {
+
+        for($i = 0; $i < 10; $i++) {
 
             $user = new User();
 
