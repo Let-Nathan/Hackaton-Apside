@@ -4,15 +4,15 @@ namespace App\Controller;
 
 use App\Form\SearchProjectType;
 use App\Repository\ProjectRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class dashboardController extends AbstractController
 {
-    #[Route('/', name:'dashboard')]
-    public function view(ProjectRepository $projectRepository, Request $request, SearchProjectType $searchProjectType): Response
+    #[Route('/', name: 'dashboard')]
+    public function view(ProjectRepository $projectRepository, Request $request): Response
     {
 
         $searchForm = $this->createForm(SearchProjectType::class);

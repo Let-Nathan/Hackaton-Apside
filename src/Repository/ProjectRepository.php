@@ -39,6 +39,28 @@ class ProjectRepository extends ServiceEntityRepository
         }
     }
 
+    public function findSimilar($search)
+    {
+        $arrWords = explode(' ', $search);
+        $result = [];
+
+        $projects = $this->findAll();
+        foreach ($projects as $project) {
+            $count = 0;
+
+            foreach ($arrWords as $word) {
+                if (strlen($word) > 4 && $this->getEntityManager()->getConnection()->fetchAllAssociative("SELECT * FROM project WHERE description LIKE '%" . $word . "%'")) {
+                    $count++;
+                }
+            }
+            if ($count >= 3) {
+                $result[] = $project;
+            }
+        }
+
+        return $result;
+    }
+
     public function findTitleTag($value): array
     {
         return $this->createQueryBuilder('u')

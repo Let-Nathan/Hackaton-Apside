@@ -36,4 +36,22 @@ class ProjectController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
+
+    #[Route('/api/projects/similar/{search}', name: 'api_similar_projects')]
+    function findSimilarProjects(string $search, ProjectRepository $projectRepository): JsonResponse
+    {
+        $projects = $projectRepository->findSimilar($search);
+
+        $projectsData = [];
+        foreach ($projects as $project) {
+            $projectsData[] = [
+                'id' => $project->getId(),
+                'title' => $project->getTitle(),
+                'subject' => $project->getSubject(),
+                'description' => substr($project->getDescription(),0, 100),
+            ];
+        }
+
+        return $this->json($projectsData);
+    }
 }

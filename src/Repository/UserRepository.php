@@ -59,7 +59,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function findByLike($value): array
     {
         return $this->createQueryBuilder('u')
-            ->where('u.firstName LIKE :value')
+            ->where('u.firstName LIKE :value OR u.lastName LIKE :value OR u.email LIKE :value OR u.agency LIKE :value')
             ->setParameter('value', '%'. $value .'%')
             ->orderBy('u.lastName', 'ASC')
             ->getQuery()

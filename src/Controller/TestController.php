@@ -27,12 +27,15 @@ class TestController extends AbstractController
             $comment->setOwner($this->getUser());
             $comment->setProject($project);
             $commentRepository->add($comment, true);
+            return $this->redirectToRoute('project_show', ['id' => $project->getId()]);
         }
 
+        $projectComments = $commentRepository->findBy(['project' => $project]);
 
         return $this->render('test/project_show.html.twig', [
             'form'      => $form->createView(),
             'project'   => $project,
+            'comments'  => $projectComments,
       ]);
     }
 
@@ -43,5 +46,14 @@ class TestController extends AbstractController
         return $this->render('test/test.html.twig', [
             'users' => $users,
         ]);
+    }
+
+    #[Route('/add/favourite/{id}', name: 'add_favourite')]
+    public function addFavourite(Project $project, UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+        $user->addFavouriteProject($project);
+        $userRepository->add($user, true);
+        return $this->redirectToRoute('dashboard');
     }
 }

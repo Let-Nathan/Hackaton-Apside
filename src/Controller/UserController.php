@@ -17,6 +17,11 @@ class UserController extends AbstractController
         $usersData = [];
         foreach ($users as $user)
         {
+            $skills = [];
+            foreach ($user->getTechnologies() as $technology)
+            {
+                $skills[] = $technology->getName();
+            }
             $usersData[] = [
                 'id' => $user->getId(),
                 'firstName' => $user->getFirstName(),
@@ -24,6 +29,7 @@ class UserController extends AbstractController
                 'email' => $user->getEmail(),
                 'img' => $user->getImageUrl(),
                 'agency' => $user->getAgency(),
+                'skills' => $skills,
             ];
         }
 

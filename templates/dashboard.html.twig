@@ -12,23 +12,29 @@
                    </div>
                </div>
                <div class="row col-10 d-flex justify-content-between bg-white">
-                    {{ form_start(form) }}
-
-                    {{ form_widget(form.title) }}
-
-                    {{ form_end(form) }}
+                    {% include('components/_searchbarProject.html.twig') %}
                    {% for project in project %}
                        <div class="card mt-4 rounded rounded-5 bg-primary shadow-lg p-3 " style="width: 18rem;">
                            <div class="d-flex justify-content-center">
-                            <img class="card-img-top rounded" src="/assets/images/project/{{ project.imageName }}" alt="{{ project.imageName }}" style="max-height: 15rem; max-width: 15rem; min-height: 10rem; min-width: 10rem;">
+                               <img class="card-img-top rounded" src="/assets/images/project/{{ project.imageName }}" alt="{{ project.imageName }}" style="max-height: 15rem; max-width: 15rem; min-height: 10rem; min-width: 10rem;">
                            </div>
-                               <div class="d-flex justify-content-center flex-row-reverse mt-4 mx-3">
+                           <div class="d-flex justify-content-center flex-row-reverse mt-4 mx-3">
                                <h1 class="text-white fs-5 fw-bold ">{{ project.title }}</h1>
                            </div>
                            <div class="card-body">
-                               <p class="card-text text-white">{{ project.description|slice(0,200)}}</p>
-                               <div class="d-flex justify-content-around mt-5">
-                                   <i class="bi-lg bi-star text-white fs-5" style="font-size: 2rem;"></i>
+
+                               <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                               <img class="card-img-top rounded" src="https://www.blackfire.io/static/8f30bb474fd6b05700c9fa5b4943a5de/0bbe1/php-no-footprint.png" alt="">
+
+                               <div class="d-flex justify-content-around mt-2">
+
+                                   <a href="{{ path('add_favourite', {'id': 4}) }}">
+
+                                       <i class="bi-lg bi-star text-white fs-5" style="font-size: 2rem;"></i>
+                                       <i class="bi-lg bi-star-fill text-white fs-5" style="font-size: 2rem;"></i>
+                                   </a>
+
                                    <i class="bi bi-box-arrow-up text-white fs-5" style="font-size: 2rem;"></i>
                                </div>
                            </div>

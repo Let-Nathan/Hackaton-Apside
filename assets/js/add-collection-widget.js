@@ -30,18 +30,23 @@ addCollaborator.addEventListener('input', () => {
                 userList.innerHTML = '';
                 result.users.forEach(user => {
                     newEl = document.createElement('li');
-                    newEl.classList.add('shadow', 'btn');
+                    newEl.classList.add('btn');
                     newEl.dataset.userId = user.id;
                     newEl.dataset.fullName = user.firstName + ' ' + user.lastName;
+
+                    skillsMarkup = '';
+                    user.skills.forEach(el => {
+                        skillsMarkup += `<p class="m-0 me-1 bg-light rounded fs-7">${el}</p>`;
+                    });
+
                     newEl.innerHTML = `
                         <div class="d-flex align-items-center gap-2">
-                            <img src="${user.img}" style="max-height: 4rem">
+                            <img src="${user.img}" style="max-height: 3rem">
                             <div class="d-flex flex-column align-items-start">
-                                <p class="m-0">${user.firstName + ' ' + user.lastName}</p>
-                                <p class="m-0">${user.agency}</p>
+                                <p class="m-0 fs-7">${user.firstName + ' ' + user.lastName + ' (' + user.agency + ')'}</p>
+                                <p class="m-0 fs-7">${user.email}</p>
                                 <div class="d-flex gap-2">
-                                    <p class="m-0 bg-warning px-2 rounded">php</p>
-                                    <p class="m-0 bg-warning px-2 rounded">JavaScript</p>
+                                    ${skillsMarkup}
                                 </div>
                             </div>
                         </div>
@@ -49,6 +54,8 @@ addCollaborator.addEventListener('input', () => {
                     userList.appendChild(newEl);
                 });
             });
+    } else {
+        userList.innerHTML = '';
     }
 });
 
