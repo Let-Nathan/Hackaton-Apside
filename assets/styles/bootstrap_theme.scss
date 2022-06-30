@@ -5,6 +5,7 @@ $dark:          #464646;
 $primary-dark:  #0a1e30;
 $secondary-dark:#e77620;
 $gray:          #787878;
+$box-shadow-lg: 0 .5rem 1rem rgba($primary, .3);
 
 $theme-colors: (
         "primary":    $primary,
@@ -15,3 +16,5 @@ $theme-colors: (
         "secondary-dark":$secondary-dark,
         "gray":       $gray,
 )
+
+

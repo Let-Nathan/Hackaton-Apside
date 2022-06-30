@@ -1,45 +1,35 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-       <div class="container-fluid">
+
            <div class="row">
-                <div class="col">
-                    <nav class="navbar navbar-light bg-light">
-                        <img src="assets/logo-apside-blanc.svg" >
-                        <a class="navbar-brand" href="#">Navbar</a>
-                    </nav>
-                </div>
-           </div>
-           <div class="row">
-               <div class="borderleft row col-2 d-flex flex-column bg-black">
+               <div class="borderleft row col-2 d-flex flex-column bg-white">
                    <div class="menu d-flex flex-column mt-4">
-                    <button class="text-white bi bi-house btn btn-secondary mb-2" type="button" data-container="body"> Return home
+                    <button class="text-white bi bi-house btn btn-primary mb-2" type="button" data-container="body"> Return home
                     </button>
-                    <button class="text-white bi bi-box-arrow-up btn btn-secondary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Most upvoted</button>
-                    <button class="text-white bi bi-star btn btn-secondary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Favorite</button>
-                    <button class="text-white bi bi-person btn btn-secondary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Profile</button>
-                    <button  class="text-white bi bi-door-open btn btn-outline-danger mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Log out</button>
+                    <button class="text-white bi bi-box-arrow-up btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Most upvoted</button>
+                    <button class="text-white bi bi-star btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Favorite</button>
+                    <button class="text-white bi bi-person btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Profile</button>
+                    <button  class="text-white bi bi-door-open btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Log out</button>
                    </div>
                </div>
-               <div class="row col-10 d-flex justify-content-between bg-black">
+               <div class="row col-10 d-flex justify-content-between bg-white">
                    <!-- Card User-->
-                   <div class="card mb-4 mt-4 rounded" style="width: 18rem;">
-                       <div class="d-flex justify-content-between flex-row-reverse">
-                           <i class="bi bi-list d-flex align-items-center justify-content-center"></i>
-                           <img class="card-img-top img-thumbnail rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3OFHzDozs8IOtg7LyK5o-jSjsRU64AcBFHQ&usqp=CAU" style="width:20%;">
+                   <div class="card mb-4 mt-4 rounded rounded-5 bg-primary shadow-lg p-3 " style="width: 18rem;">
+                       <div class="d-flex justify-content-center flex-row-reverse mt-2 mx-3">
+{#                           <i class="bi bi-list d-flex align-items-center justify-content-center text-white fs-3"></i>#}
+                           <h1 class="text-white fs-5 fw-bold ">Project Title</h1>
                        </div>
                        <div class="card-body">
-                           <h5 class="card-title">Project Title</h5>
-                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                           <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
                                <img class="card-img-top rounded" src="https://www.blackfire.io/static/8f30bb474fd6b05700c9fa5b4943a5de/0bbe1/php-no-footprint.png" alt="">
 
                            <div class="d-flex justify-content-around mt-2">
-                               <i class="bi-lg bi-star" style="font-size: 2rem;"></i>
-                               <i class="bi bi-box-arrow-up" style="font-size: 2rem;"></i>
+                               <i class="bi-lg bi-star text-white fs-5" style="font-size: 2rem;"></i>
+                               <i class="bi bi-box-arrow-up text-white fs-5" style="font-size: 2rem;"></i>
                            </div>
-                           <a href="#" class="d-flex justify-content-center btn btn-primary stretched-link mt-2">
-                               Go somewhere
-                           </a>
+
                        </div>
 
                    </div>
