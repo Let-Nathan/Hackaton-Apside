@@ -22,6 +22,10 @@ class TestController extends AbstractController
         $comment = new Comment();
         $form = $this->createForm(CommentsType::class, $comment);
         $form->handleRequest($request);
+        $rand1 = rand(60,90);
+        $rand2 = rand(20,50);
+        $rand3 = rand(27,34);
+
 
         if ($form->isSubmitted() && $form->isValid()){
             $comment->setOwner($this->getUser());
@@ -36,7 +40,10 @@ class TestController extends AbstractController
             'form'      => $form->createView(),
             'project'   => $project,
             'comments'  => $projectComments,
-      ]);
+            'rand1'     => $rand1,
+            'rand2'     => $rand2,
+            'rand3'     => $rand3,
+        ]);
     }
 
     #[Route('/test', name: 'test')]
@@ -49,38 +56,38 @@ class TestController extends AbstractController
     }
 
     #[Route('/add/favourite/{id}', name: 'add_favourite')]
-    public function addFavourite(Project $project, UserRepository $userRepository): Response
+    public function addFavourite(Project $project, UserRepository $userRepository, Request $request): Response
     {
         $user = $this->getUser();
         $user->addFavouriteProject($project);
         $userRepository->add($user, true);
-        return $this->redirectToRoute('dashboard');
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 
     #[Route('/remove/favourite/{id}', name: 'remove_favourite')]
-    public function removeFavourite(Project $project, UserRepository $userRepository): Response
+    public function removeFavourite(Project $project, UserRepository $userRepository, Request $request): Response
     {
         $user = $this->getUser();
         $user->removeFavouriteProject($project);
         $userRepository->add($user, true);
-        return $this->redirectToRoute('dashboard');
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 
     #[Route('/add/like/{id}', name: 'add_like')]
-    public function addLike(Project $project, UserRepository $userRepository): Response
+    public function addLike(Project $project, UserRepository $userRepository, Request $request): Response
     {
         $user = $this->getUser();
         $user->addLikedProject($project);
         $userRepository->add($user, true);
-        return $this->redirectToRoute('dashboard');
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 
     #[Route('/remove/like/{id}', name: 'remove_like')]
-    public function removeLike(Project $project, UserRepository $userRepository): Response
+    public function removeLike(Project $project, UserRepository $userRepository, Request $request): Response
     {
         $user = $this->getUser();
         $user->removeLikedProject($project);
         $userRepository->add($user, true);
-        return $this->redirectToRoute('dashboard');
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 }

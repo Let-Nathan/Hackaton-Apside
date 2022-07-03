@@ -57,7 +57,7 @@ Finir de commenter la vue, afin qu'elle soit lisible de tous !
                         </h4>
                     </div>
                     <p>
-                        Il y a {{ project.userProjects|length }} personnes qui participent
+                        {{ project.userProjects|length }} people are collaborating on this project
                     </p>
                 </div>
             </div>
@@ -99,19 +99,21 @@ Finir de commenter la vue, afin qu'elle soit lisible de tous !
             <h2 class="fw-bold lh-1">Project roadmap</h2>
             <h6>Mise en place</h6>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                <div class="progress-bar" role="progressbar" style="width: {{ rand1 }}%;" aria-valuenow="25"
                      aria-valuemin="0"
-                     aria-valuemax="100">25%</div>
+                     aria-valuemax="100">{{ rand1 }}%</div>
             </div>
             <h6>Home page</h6>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 48%;" aria-valuenow="25" aria-valuemin="0"
-                     aria-valuemax="100">48%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ rand2 }}%;" aria-valuenow="25"
+                     aria-valuemin="0"
+                     aria-valuemax="100">{{ rand2 }}%</div>
             </div>
             <h6>Traitement des photos</h6>
             <div class="progress">
-                <div class="progress-bar bg-secondary" role="progressbar" style="width: 79%;" aria-valuenow="25" aria-valuemin="0"
-                     aria-valuemax="100">79%</div>
+                <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ rand3 }}%;"
+                     aria-valuenow="25" aria-valuemin="0"
+                     aria-valuemax="100">{{ rand3 }}%</div>
             </div>
         </div>
 
@@ -126,9 +128,9 @@ Finir de commenter la vue, afin qu'elle soit lisible de tous !
                         <i class="bi bi-globe fs-3"></i>
                         <div class="d-flex gap-2 w-100 align-items-center justify-content-between">
                             <div>
-                                <h6 class="mb-0">Website du projet </h6>
+                                <h6 class="mb-0">Project website</h6>
                             </div>
-                            <small class="opacity-50 text-nowrap">2 days ago</small>
+                            <small class="opacity-50 text-nowrap">1 days ago</small>
                         </div>
                     </a>
                 {% endif %}
@@ -139,7 +141,7 @@ Finir de commenter la vue, afin qu'elle soit lisible de tous !
                         <i class="bi bi-github fs-3"></i>
                         <div class="d-flex gap-2 w-100 align-items-center justify-content-between">
                             <div>
-                                <h6 class="mb-0">Repo officiel</h6>
+                                <h6 class="mb-0">Repository</h6>
                             </div>
                             <small class="opacity-50 text-nowrap">now</small>
                         </div>
@@ -151,11 +153,11 @@ Finir de commenter la vue, afin qu'elle soit lisible de tous !
                         <i class="bi bi-slack fs-3"></i>
                         <div class="d-flex gap-2 w-100 align-items-center justify-content-between">
                             <div>
-                                <h6 class="mb-0">Slack du projet</h6>
-                                <p class="mb-0 opacity-75">Il faut faire une demande pour être accepté</p>
+                                <h6 class="mb-0">Slack channel</h6>
+                                <p class="mb-0 opacity-75">Send a request to be accepted</p>
 
                             </div>
-                            <small class="opacity-50 text-nowrap">2 days ago</small>
+                            <small class="opacity-50 text-nowrap">1 days ago</small>
                         </div>
                     </a>
                 {% endif %}
@@ -165,7 +167,7 @@ Finir de commenter la vue, afin qu'elle soit lisible de tous !
                         <i class="bi bi-pencil-square fs-3"></i>
                         <div class="d-flex gap-2 w-100 align-items-center justify-content-between">
                             <div>
-                                <h6 class="mb-0">Trello du projet</h6>
+                                <h6 class="mb-0">Trello dashboard</h6>
                             </div>
                             <small class="opacity-50 text-nowrap">2 days ago</small>
                         </div>

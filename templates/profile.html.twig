@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-body p-5 d-flex flex-column align-items-center gap-3">
+
+                    <h1 class="fw-bold mb-0 text-center fs-2">{{ app.user.firstname ~ ' ' ~  app.user.lastname}}</h1>
+
+                    <img src="{{ app.user.imageUrl }}" class="text-center" alt="">
+
+                    <div class="d-flex flex-column align-items-center">
+                        <h3 class="fw-bold fs-4 mb-3">Email</h3>
+                        <h2> {{ app.user.email  }} </h2>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-center">
+                        <h3 class="fw-bold fs-4 mb-3">Agency</h3>
+                        <h2> {{ app.user.agency  }} </h2>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-center">
+                        <h3 class="fw-bold fs-4 mb-3">Bio</h3>
+                        <h2> {{ app.user.bio  }} </h2>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-center">
+                        <h3 class="fw-bold fs-4 mb-3">Technologies</h3>
+                        <ul class="list-unstyled d-flex gap-1">
+                            {% for technology in app.user.technologies %}
+                                <li class="m-0 me-1 p-1 bg-light rounded fs-7">
+                                    {{ technology.name }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <button type="button" class="btn btn-lg btn-primary mt-5 w-100"
+                            data-bs-dismiss="modal">Edit profile</button>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}

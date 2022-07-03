@@ -5,10 +5,13 @@
         </a>
         <ul class="d-flex justify-content-center gap-5 list-unstyled m-0">
             <li>
-                <a class="text-white text-decoration-none" href="#">HOME</a>
+                <a class="text-white text-decoration-none" href="{{ path('dashboard') }}">HOME</a>
             </li>
             <li>
-                <a class="text-white text-decoration-none" href="#">PROFILE</a>
+                <a class="text-white text-decoration-none" href="{{ path('app_project_new') }}">ADD PROJECT</a>
+            </li>
+            <li>
+                <a class="text-white text-decoration-none" href="{{ path('app_user') }}">PROFILE</a>
             </li>
             <li>
                 <a class="text-white text-decoration-none" href="{{ path('app_logout') }}">LOGOUT</a>
