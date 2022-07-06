@@ -6,4 +6,4 @@ Work done by:
 
 Giuessepe Petraroli : https://github.com/gpetraroli
 Antoine Dumez : https://github.com/antoinedumez
-and my self.
+Nathan Letournel : https://github.com/Let-Nathan
